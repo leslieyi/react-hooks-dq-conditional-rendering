@@ -1,25 +1,36 @@
-import React from "react";
+import React, {useState} from "react";
 import MenuBar from "./MenuBar";
 import { Profile, Photos, Cocktails, Pokemon } from "./pages";
-
 function MainBox() {
   /*
     Replace the code below! Depending on what menu item is selected in the menu, 
     I should render either a Profile, Photos, Cocktails, or Pokemon component.
     Think of a way to track which menu item was selected. 
-    - Which component should have state? 
-    - Which component should have methods to control state? 
-    - Where should these methods be called?
+    - Which component should have state? <MainBox />
+    - Which component should have methods to control state? <MenuBar />
+    - Where should these methods be called? <MenuBar />
   */
-
-  let detailsToDisplay = <div>Hi, I'm a div!</div>;
-
+ const [menuName, setMenuName] = useState("profile");
+ let detailsToDisplay 
+ if (menuName === "profile") {
+   detailsToDisplay = <Profile />
+ } else if (menuName === "photos") {
+  detailsToDisplay = <Photos />
+ } else if (menuName === "cocktails") {
+  detailsToDisplay = <Cocktails />
+ } else if (menuName === "pokemon") {
+  detailsToDisplay = <Pokemon />
+ }
+ function toggleClick(menuSelect){
+  setMenuName(menuSelect) 
+}
+function active(){
+}
   return (
     <div>
-      <MenuBar />
+      <MenuBar  toggleClick={toggleClick} menuName={menuName}/>
       {detailsToDisplay}
     </div>
   );
 }
-
 export default MainBox;
