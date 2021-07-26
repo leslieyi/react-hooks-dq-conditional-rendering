@@ -11,25 +11,36 @@ function MainBox() {
     - Where should these methods be called? <MenuBar />
   */
  const [menuName, setMenuName] = useState("profile");
- let detailsToDisplay 
- if (menuName === "profile") {
-   detailsToDisplay = <Profile />
- } else if (menuName === "photos") {
-  detailsToDisplay = <Photos />
- } else if (menuName === "cocktails") {
-  detailsToDisplay = <Cocktails />
- } else if (menuName === "pokemon") {
-  detailsToDisplay = <Pokemon />
- }
- function toggleClick(menuSelect){
-  setMenuName(menuSelect) 
+
+ 
+
+//  let detailsToDisplay 
+//  if (menuName === "profile") {
+//    detailsToDisplay = <Profile />
+//  } else if (menuName === "photos") {
+//   detailsToDisplay = <Photos />
+//  } else if (menuName === "cocktails") {
+//   detailsToDisplay = <Cocktails />
+//  } else if (menuName === "pokemon") {
+//   detailsToDisplay = <Pokemon />
+//  }
+
+//  function toggleClick(menuSelect){
+//   setMenuName(menuSelect) 
+// }
+
+let detailsToDisplay = {
+  profile: <Profile />,
+  photos : <Photos />,
+  cocktails : <Cocktails />,
+  pokemon : <Pokemon />
 }
-function active(){
-}
+const toggleClick = (usersChoice) => setMenuName(usersChoice)
+
   return (
     <div>
       <MenuBar  toggleClick={toggleClick} menuName={menuName}/>
-      {detailsToDisplay}
+      {detailsToDisplay[menuName]}
     </div>
   );
 }
